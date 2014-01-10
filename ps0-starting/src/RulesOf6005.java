@@ -10,6 +10,7 @@ import java.util.GregorianCalendar;
  * The grade details are described by the computeGrade function.
  * 
  * The extension policy (slack days) are described by the extendDeadline function.
+ * first edit for github commit test
  */
 public class RulesOf6005 {
 	
