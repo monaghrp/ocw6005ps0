@@ -1,3 +1,5 @@
+import static org.junit.Assert.assertEquals;
+
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
@@ -10,7 +12,6 @@ import java.util.GregorianCalendar;
  * The grade details are described by the computeGrade function.
  * 
  * The extension policy (slack days) are described by the extendDeadline function.
- * first edit for github commit test
  */
 public class RulesOf6005 {
 	
@@ -24,7 +25,29 @@ public class RulesOf6005 {
 	 */
 	public static boolean hasFeature(String name){
 		// TODO: Fill in this method, then remove the RuntimeException
-        throw new RuntimeException("hasFeature not implemented");
+        //throw new RuntimeException("hasFeature not implemented");
+        String nameLowerCase = new String(name.toLowerCase());
+        if (nameLowerCase.equals("lectures")) {
+            return true;
+        } else if (nameLowerCase.equals("recitations")) {
+            return true;
+        } else if (nameLowerCase.equals("text")) {
+            return true;
+        } else if (nameLowerCase.equals("problems sets")) {
+            return true;
+        } else if (nameLowerCase.equals("code review")) {
+            return true;
+        } else if (nameLowerCase.equals("returnin")) {
+            return true;
+        } else if (nameLowerCase.equals("projects")) {
+            return true;
+        } else if (nameLowerCase.equals("team meetings")) {
+            return true;
+        } else if (nameLowerCase.equals("quizzes")) {
+            return true;
+        } else {
+            return false;
+        }
 	}
 	
 	
@@ -43,7 +66,13 @@ public class RulesOf6005 {
 	 */
 	public static int computeGrade(int quiz, int pset, int project, int participation){
 		// TODO: Fill in this method, then remove the RuntimeException
-        throw new RuntimeException("computeGrade not implemented");
+        //throw new RuntimeException("computeGrade not implemented");
+	    double dQuiz=(double)(quiz) * .2;
+	    double dPset=(double)(pset) * .4;
+	    double dProject=(double)(project) * .3;
+	    double dPart=(double)(participation) * .1;
+	            
+	    return (int)(Math.round(dQuiz+dPset+dProject+dPart));
 	}
 	
 	
@@ -61,9 +90,26 @@ public class RulesOf6005 {
 	 * @param duedate - the original due date of the assignment
 	 * @return a new instance of a Calendar with the date and time set to when the assignment will be due
 	 */
+	
 	public static Calendar extendDeadline(int request, int budget, Calendar duedate){
 		// TODO: Fill in this method, then remove the RuntimeException
-        throw new RuntimeException("extendDeadline not implemented");
+        //throw new RuntimeException("extendDeadline not implemented");
+	    if (request > budget) {
+	        request=budget;
+	    } else if (request> 3) {
+	        request=3;
+	    }
+	    Calendar newDeadline = new GregorianCalendar();
+	    newDeadline.clear();
+	    newDeadline.set(duedate.get(Calendar.YEAR),
+	                    duedate.get(Calendar.MONTH),
+	                    duedate.get(Calendar.DATE),
+	                    duedate.get(Calendar.HOUR),
+	                    duedate.get(Calendar.MINUTE),
+	                    duedate.get(Calendar.SECOND));  
+	    newDeadline.add(Calendar.DATE, request);        
+        return newDeadline;
+        
 	}
 	
 	
